@@ -1,0 +1,24 @@
+---
+title: "tut3"
+output: html_document
+---
+```{r}
+# SvcSat and Waiting time
+labs <- read.csv("C:/Users/user/Desktop/2015-16 sem2/is4250/labs.csv")
+labs$SvcSat = as.numeric(labs$SvcSat)
+labs$WaitTime = as.numeric(labs$WaitTime)
+cor(labs$SvcSat, labs$WaitTime)
+
+#bmi computation
+bmi <- (labs$WT / (labs$HT^2))
+labs$BMI <- bmi
+knitr::kable(labs)
+# correlation of BMI with TC
+labs$BMI <- as.numeric(labs$BMI)
+labs$TC <- as.numeric(labs$TC)
+cor(labs$BMI, labs$TC)
+
+#predict BMI
+dplyr::filter(labs, labs$AGE>43, labs$AGE<47, labs$Citizen=="Y")
+#BMI would be more than 27.5 as BMI and TC have a positive correlation
+```
